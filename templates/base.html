@@ -12,8 +12,14 @@
         <a class="navbar-brand" href="/">Home</a>
         <div>
             {% block content %}
-            <a class="navbar-text" href="/">Register</a>
-            <a class="navbar-text" href="/">Login</a>
+            {% if user %}
+            <a class="navbar-text">Hello, {{ user.login }}</a>
+            <a class="navbar-text" href="/logout">Logout</a>
+            {% else %}
+            <a class="navbar-text" href="/register">Register</a>
+            <a class="navbar-text" href="/login">Login</a>
+
+            {% endif %}
             {% endblock %}
         </div>
     </nav>
@@ -21,7 +27,7 @@
         {% block content2 %}
         <h2 style="text-align:center;margin:30px auto 40px auto;">To-Do app</h2>
         <div style="display:table;margin:0 auto;">
-        <form action="new_search/" method="post" class="form-inline">
+        <form {% if user %} action="new_search/" {% else %} action="login/" {% endif %}  method="post" class="form-inline">
             {% csrf_token %}
             <input type="search" class="form-control" name="search" placeholder="type here..." style="margin:2px" autofocus>
             <button type="submit" class="btn btn-primary" style="margin:2px">Submit</button>

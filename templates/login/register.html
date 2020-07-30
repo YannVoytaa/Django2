@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<a class="navbar-text" href="/register">Register</a>
+<a class="navbar-text" href="/login">Login</a>
 {% endblock %}
 
 {% block content2 %}
-<form action="verify_login/" method="post">
+<form action="verify_register/" method="post">
     {% csrf_token %}
     <input type="search" name="login" placeholder="Login" class="form-control" style="width:25%;margin:50px auto 10px auto;" autofocus>
     <input type="password" name="password" class="form-control" style="width:25%;margin:0 auto;" placeholder="Password">
     <div style="display:flex;justify-content:center; margin:10px auto;">
-    <button type="submit" class="btn btn-primary">Login</button>
+    <button type="submit" class="btn btn-primary">Register</button>
     </div>
 </form>
 {% endblock %}
